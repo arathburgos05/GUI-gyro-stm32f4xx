@@ -1,0 +1,29 @@
+/*******************************************************************/
+/*******************************************************************/
+				Notas para armar el proyecto con 
+			STCubeMX v5.6.1 & STemWin v5.40 & Keil v5.29
+		
+			       Dr. José Miguel Morán Loza
+				 Tópicos Selectos en Computación
+				   Universidad de Guadalajara
+							 CUCEI
+
+
+/*******************************************************************/
+/*******************************************************************/
+Update 2:	01/12/2021	
+			Actualización a STMCubeMX 6.3.0
+			Actualización a STemWin v5.44
+			Actualización a Keil v5.35
+			
+Update 1:	22/05/2020 	
+			Actualización de Drivers & Packs ST
+			
+Creación:	1/12/2018
+			STCubeMX v5.6.1 & STemWin v5.40 & Keil v5.29
+
+/*******************************************************************/
+/*******************************************************************/
+
+
+/****** (C) COPYRIGHT 2011 Moran Technologies *****END OF FILE******/
