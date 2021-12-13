@@ -32,15 +32,20 @@
 *
 **********************************************************************
 */
-#define ID_FRAMEWIN_0 (GUI_ID_USER + 0x00)
-#define ID_TEXT_0 (GUI_ID_USER + 0x01)
-#define ID_TEXT_1 (GUI_ID_USER + 0x02)
-#define ID_TEXT_2 (GUI_ID_USER + 0x03)
-#define ID_TEXT_3 (GUI_ID_USER + 0x04)
-#define ID_TEXT_4 (GUI_ID_USER + 0x05)
-#define ID_TEXT_5 (GUI_ID_USER + 0x06)
-#define ID_SLIDER_0 (GUI_ID_USER + 0x08)
-#define ID_SLIDER_1 (GUI_ID_USER + 0x09)
+#define ID_FRAMEWIN_0            (GUI_ID_USER + 0x00)
+#define ID_TEXT_0            (GUI_ID_USER + 0x01)
+#define ID_TEXT_1            (GUI_ID_USER + 0x02)
+#define ID_SLIDER_0            (GUI_ID_USER + 0x03)
+#define ID_SLIDER_1            (GUI_ID_USER + 0x04)
+#define ID_TEXT_2            (GUI_ID_USER + 0x05)
+#define ID_TEXT_3            (GUI_ID_USER + 0x06)
+#define ID_TEXT_4            (GUI_ID_USER + 0x07)
+#define ID_TEXT_5            (GUI_ID_USER + 0x08)
+#define ID_TEXT_6            (GUI_ID_USER + 0x0A)
+#define ID_TEXT_7            (GUI_ID_USER + 0x0B)
+#define ID_TEXT_8            (GUI_ID_USER + 0x0C)
+#define ID_TEXT_9            (GUI_ID_USER + 0x0D)
+#define ID_TEXT_10            (GUI_ID_USER + 0x0E)
 
 
 // USER START (Optionally insert additional defines)
@@ -62,15 +67,20 @@
 *       _aDialogCreate
 */
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { FRAMEWIN_CreateIndirect, "FrameWinMoran", ID_FRAMEWIN_0, 0, 0, 240, 320, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "HEAD_Axis_X", ID_TEXT_0, 13, 65, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "CONT_Axis_X", ID_TEXT_1, 116, 66, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "HEAD_Axis_Y", ID_TEXT_2, 10, 96, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "HEAD_Axis_Z", ID_TEXT_3, 11, 124, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "CONT_Axis_Y", ID_TEXT_4, 116, 95, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "CONT_Axis_Z", ID_TEXT_5, 117, 123, 80, 20, 0, 0x64, 0 },
-  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_0, 27, 20, 170, 36, 0, 0x0, 0 },
-  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_1, 87, 150, 41, 135, 8, 0x0, 0 },
+  { FRAMEWIN_CreateIndirect, "FrameWinMoran", ID_FRAMEWIN_0, 1, 0, 240, 320, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "PROYECTO FINAL", ID_TEXT_0, 27, 17, 196, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "Francisco Mora", ID_TEXT_1, 67, 48, 105, 26, 0, 0x0, 0 },
+  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_0, 11, 138, 203, 20, 0, 0x0, 0 },
+  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_1, 12, 204, 204, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "Eje Y: (Eje vertical)", ID_TEXT_2, 70, 179, 103, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "Eje X: (Eje horizontal)", ID_TEXT_3, 64, 120, 134, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "218318865", ID_TEXT_4, 81, 69, 64, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "-180", ID_TEXT_5, 7, 158, 34, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "-180", ID_TEXT_6, 8, 225, 32, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "0", ID_TEXT_7, 111, 152, 21, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "0", ID_TEXT_8, 113, 219, 19, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "180", ID_TEXT_9, 203, 155, 25, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "180", ID_TEXT_10, 201, 219, 28, 20, 0, 0x0, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -102,54 +112,30 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
     //
-    // Initialization of 'HEAD_Axis_X'
+    // Initialization of 'PROYECTO FINAL'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
-    TEXT_SetText(hItem, "Axis X:");
-    TEXT_SetTextAlign(hItem, GUI_TA_LEFT | GUI_TA_VCENTER);
+    TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     //
-    // Initialization of 'CONT_Axis_X'
+    // Initialization of 'Francisco Mora'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
-    TEXT_SetText(hItem, "12345.2");
-    TEXT_SetTextAlign(hItem, GUI_TA_LEFT | GUI_TA_VCENTER);
-    TEXT_SetFont(hItem, GUI_FONT_24_1);
-    //
-    // Initialization of 'HEAD_Axis_Y'
-    //
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
-    TEXT_SetText(hItem, "Axis Y:");
-    //
-    // Initialization of 'HEAD_Axis_Z'
-    //
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_3);
-    TEXT_SetText(hItem, "Axis Z:");
-    //
-    // Initialization of 'CONT_Axis_Y'
-    //
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
-    TEXT_SetText(hItem, "12345.2");
-    TEXT_SetTextAlign(hItem, GUI_TA_LEFT | GUI_TA_VCENTER);
-    TEXT_SetFont(hItem, GUI_FONT_24_1);
-    //
-    // Initialization of 'CONT_Axis_Z'
-    //
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
-    TEXT_SetTextAlign(hItem, GUI_TA_LEFT | GUI_TA_VCENTER);
-    TEXT_SetFont(hItem, GUI_FONT_24_1);
-    TEXT_SetText(hItem, "12345.2");
+    TEXT_SetFont(hItem, GUI_FONT_13H_ASCII);
     // USER START (Optionally insert additional code for further widget initialization)
 
+	// Se fija el rango para el eje X (-180 grados a 180 grados que hacen los 360 grados totales)
     hItem = WM_GetDialogItem(pMsg->hWin, ID_SLIDER_0);
 	SLIDER_SetRange(hItem, -180, 180);
-	SLIDER_SetValue(hItem, 0);
 
+	// Se fija el rango para el eje Y (-180 grados a 180 grados que hacen los 360 grados totales)
 	hItem = WM_GetDialogItem(pMsg->hWin, ID_SLIDER_1);
 	SLIDER_SetRange(hItem, -180, 180);
-	SLIDER_SetValue(hItem, 0);
 
-    main_windows_hItem = pMsg->hWin;
-    b_isInitcbDialog = 1U;
+	// Se guarda el manejador en una variable global para ser modificado desde App.c
+	hItem_global = pMsg->hWin;
+
+	// Se avisa que ya se inicializo la ventana para ser modificada desde el ciclo de App.c
+	seInicializoLaVentana = 1;
     // USER END
     break;
   case WM_NOTIFY_PARENT:

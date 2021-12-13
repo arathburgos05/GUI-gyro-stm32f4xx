@@ -43,13 +43,15 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-extern uint8_t b_isInitcbDialog = 0U;
-extern uint8_t i_counter_1 = 0U;
 
-char my_buffer[20];
-WM_HWIN      hItem;		// Handler
-WM_HWIN      main_windows_hItem;		// Main Windows Handler
-float pfData_XYZ[3] = {1.0, 2.0, 3.0};
+// Para saber si ya se puede trabajar sobre la ventana creada.
+// 0 para NO
+// 1 para SI
+extern int seInicializoLaVentana = 0;
+
+// Nos sirve para modificar los elementos de la ventana desde App.c
+WM_HWIN hItem_global;
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -59,8 +61,6 @@ extern volatile GUI_TIMER_TIME OS_TimeMS;
 uint8_t GUI_Initialized = 0;
 TIM_HandleTypeDef TimHandle;
 uint32_t uwPrescalerValue = 0;
-
-uint16_t variable_for_timer = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,28 +83,31 @@ extern void MainTask(void);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void) {
-	/* USER CODE BEGIN 1 */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
 
-	/* USER CODE END 1 */
+  /* USER CODE END 1 */
 
-	/* MCU Configuration--------------------------------------------------------*/
+  /* MCU Configuration--------------------------------------------------------*/
 
-	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
 
-	/* USER CODE BEGIN Init */
+  /* USER CODE BEGIN Init */
 
 	BSP_Config();			//Inicializa LCD y LEDS
+
+	// Se incializa el giroscopio.
 	BSP_GYRO_Init();
-	/* USER CODE END Init */
+  /* USER CODE END Init */
 
-	/* Configure the system clock */
-	SystemClock_Config();
+  /* Configure the system clock */
+  SystemClock_Config();
 
-	/* USER CODE BEGIN SysInit */
+  /* USER CODE BEGIN SysInit */
 
-	/* USER CODE END SysInit */
+  /* USER CODE END SysInit */
 
 	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
@@ -114,10 +117,6 @@ int main(void) {
 	MX_TIM1_Init();
 	MX_USART1_UART_Init();
 	/* USER CODE BEGIN 2 */
-
-	/* Init L3GD20 sensor */
-//	L3GD20_Init(L3GD20_Scale_2000);
-
 	if (HAL_TIM_Base_Init(&htim1) != HAL_OK) {
 		while (1) {
 		}
@@ -139,16 +138,16 @@ int main(void) {
 	WM_SetCreateFlags(WM_CF_MEMDEV);
 
 	MainTask();
-	/* USER CODE END 2 */
+  /* USER CODE END 2 */
 
-	/* Infinite loop */
-	/* USER CODE BEGIN WHILE */
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
 	while (1) {
-		/* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-		/* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN 3 */
 	}
-	/* USER CODE END 3 */
+  /* USER CODE END 3 */
 }
 
 /**
@@ -282,20 +281,17 @@ void BSP_Pointer_Update(void)
   * @param  htim : TIM handle
   * @retval None
   */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	/* USER CODE BEGIN Callback 0 */
-	// Every 0.728 ms <-- (1/90e6 * 65535)
-	if (htim->Instance == TIM1) {
-		++variable_for_timer;
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
 
-	}
-	/* USER CODE END Callback 0 */
-	if (htim->Instance == TIM6) {
-		HAL_IncTick();
-	}
-	/* USER CODE BEGIN Callback 1 */
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM6) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
 	BSP_Background();	//A�adir c�digo
-	/* USER CODE END Callback 1 */
+  /* USER CODE END Callback 1 */
 }
 
 /**

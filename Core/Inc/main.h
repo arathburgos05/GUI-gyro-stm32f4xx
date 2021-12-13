@@ -43,12 +43,15 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-extern uint8_t b_isInitcbDialog;
-extern uint8_t i_counter_1;
-extern char my_buffer[20];
-extern WM_HWIN      hItem;		// Handler
-extern WM_HWIN      main_windows_hItem;		// Main Windows Handler
-extern float pfData_XYZ[3];
+
+// Para saber si ya se puede trabajar sobre la ventana creada.
+// 0 para NO
+// 1 para SI
+extern int seInicializoLaVentana;
+
+// Nos sirve para modificar los elementos de la ventana desde App.c
+extern WM_HWIN hItem_global;
+
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -58,7 +61,6 @@ extern float pfData_XYZ[3];
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-extern uint16_t variable_for_timer;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
