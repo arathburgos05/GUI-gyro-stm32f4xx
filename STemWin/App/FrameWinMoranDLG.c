@@ -126,10 +126,12 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
 	// Se fija el rango para el eje X (-180 grados a 180 grados que hacen los 360 grados totales)
     hItem = WM_GetDialogItem(pMsg->hWin, ID_SLIDER_0);
 	SLIDER_SetRange(hItem, -180, 180);
+	SLIDER_SetValue(hItem, 0);
 
 	// Se fija el rango para el eje Y (-180 grados a 180 grados que hacen los 360 grados totales)
 	hItem = WM_GetDialogItem(pMsg->hWin, ID_SLIDER_1);
 	SLIDER_SetRange(hItem, -180, 180);
+	SLIDER_SetValue(hItem, 0);
 
 	// Se guarda el manejador en una variable global para ser modificado desde App.c
 	hItem_global = pMsg->hWin;

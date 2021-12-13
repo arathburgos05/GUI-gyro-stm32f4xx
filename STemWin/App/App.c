@@ -73,8 +73,8 @@ void MainTask(void) {
 	int eje = 0;
 
 	while (1) {
-		// Delay de 400ms
-		GUI_Delay(400);
+		// Delay de 50ms
+		GUI_Delay(50);
 
 		// Solo se comenzara a modificar la ventana cuando esta ya sea creada.
 		if (seInicializoLaVentana) {
@@ -83,19 +83,17 @@ void MainTask(void) {
 
 			// Integracion de la velocidad angular parar obtener la posicion angular.
 			// (se multiplicar por el tiempo transcurrido desde la ultima vez que se paso por aqui)
-			// en este caso corresponde al GUI_Delay(400) es decir, 400ms -> 0.4s.
+			// en este caso corresponde al GUI_Delay(50) es decir, 50ms -> 0.05s.
 			for (eje = 0; eje < 2; eje++) {
-				posicion_angular_XYZ[eje] += (velocidad_angular_XYZ[eje]/1000.0) * 0.4;
+				posicion_angular_XYZ[eje] += (velocidad_angular_XYZ[eje]/1000.0f) * 0.05f;
 			}
 
 			// Se escribe el valor en el slide para el eje X.
 			hItem = WM_GetDialogItem(hItem_global, ID_SLIDER_0);
-			SLIDER_SetRange(hItem, -180, 180);
 			SLIDER_SetValue(hItem, (int)posicion_angular_XYZ[0]);
 
 			// Se escribe el valor en el slide para el eje Y.
 			hItem = WM_GetDialogItem(hItem_global, ID_SLIDER_1);
-			SLIDER_SetRange(hItem, -180, 180);
 			SLIDER_SetValue(hItem, (int)posicion_angular_XYZ[1]);
 		}
 	}
